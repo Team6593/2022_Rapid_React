@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -17,11 +18,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-
   private final DriveTrain driveTrain = new DriveTrain();
 
+  private XboxController x_stick = new XboxController(Constants.XboxController_Port);
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    driveTrain.setDefaultCommand(new ArcadeDrive(driveTrain, x_stick.getRawAxis(1), x_stick.getRawAxis(4)));
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -39,5 +42,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-
+  public Command getAutonomousCommand() {
+    // An ExampleCommand will run in autonomous
+    return null;
+  }
 }

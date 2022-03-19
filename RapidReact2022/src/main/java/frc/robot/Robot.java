@@ -88,7 +88,7 @@ public class Robot extends TimedRobot {
     // Y-Axis of left stick moves back and forward
     // and the X-Axis of the right stick moves left and right;
     // of course, you can use them both at the same time.
-    driveTrain._arcadeDrive(consts.XBOX_CONTROLLER.getLeftY(), consts.XBOX_CONTROLLER.getLeftX() );
+    //driveTrain._arcadeDrive(consts.XBOX_CONTROLLER.getLeftY(), consts.XBOX_CONTROLLER.getLeftX() );
   }
 
   @Override
