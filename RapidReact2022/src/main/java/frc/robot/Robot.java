@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     rbContainer = new RobotContainer();
-    consts.DT_RIGHTSIDE.setInverted(true); // You may have to change the left side to be inverted
+    driveTrain.DT_RIGHTSIDE.setInverted(true); // You may have to change the left side to be inverted
     // or the right side; it really depends on the drivetrain on the robot
 
   }
@@ -63,12 +63,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = rbContainer.getAutonomousCommand();
 
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
   }
 
   /** This function is called periodically during autonomous. */
