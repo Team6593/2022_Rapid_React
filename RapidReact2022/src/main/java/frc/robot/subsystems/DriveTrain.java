@@ -12,16 +12,22 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
+  
+  public Constants consts = new Constants();
+
+  public void _arcadeDrive(double xSpd, double zRot) {
+    consts.RB_DRIVE.arcadeDrive(xSpd, zRot);
+  }
+
+  public void stopAllMotors() {
+    consts.RB_DRIVE.stopMotor();
+  }
+  
   /** Creates a new DriveTrain. */
+  public DriveTrain() {}
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-
-  public void ArcadeDrive() {
-  }
-
-public void StopAllMotors() {
-}
 }

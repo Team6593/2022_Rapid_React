@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
@@ -26,17 +25,11 @@ public class ArcadeDrive extends CommandBase {
     addRequirements(driveTrain);
   }
 
-  public void StopMotors(){
-
-    driveTrain.StopAllMotors();
-
-  }
-
 
   @Override
   public void initialize() {
 
-    driveTrain.ArcadeDrive();
+    driveTrain._arcadeDrive(motorSpeed, rotationSpeed);
     
   }
 
@@ -48,7 +41,7 @@ public class ArcadeDrive extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    driveTrain.StopAllMotors();
+    driveTrain.stopAllMotors();
 
   }
 
