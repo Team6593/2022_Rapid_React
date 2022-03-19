@@ -17,6 +17,17 @@ import edu.wpi.first.wpilibj.XboxController;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    //Motor ID's
+    public static final int Left_motor_1_ID = 0;
+    public static final int Left_motor_2_ID = 0;
+    public static final int Right_motor_1_ID = 0;
+    public static final int Right_motor_2_ID = 0;
+    public static final int XboxController_Port = 0;
+
+
+
+
     XboxController XBOX_CONTROLLER = new XboxController(0);
 
     TalonFX MASTER_RIGHT = new TalonFX(1);
