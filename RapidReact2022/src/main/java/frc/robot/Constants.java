@@ -5,8 +5,11 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -19,8 +22,18 @@ import edu.wpi.first.wpilibj.XboxController;
 public final class Constants {
     XboxController XBOX_CONTROLLER = new XboxController(0);
 
-    TalonFX MASTER_RIGHT = new TalonFX(1);
-    TalonFX SLAVE_RIGHT = new TalonFX(2);
-    TalonFX MASTER_LEFT = new TalonFX(3);
-    TalonFX SLAVE_LEFT = new TalonFX(4);
+    public final WPI_TalonFX MASTER_RIGHT = new WPI_TalonFX(1);
+    public final WPI_TalonFX MASTER_LEFT = new WPI_TalonFX(2);
+    public final WPI_TalonFX SLAVE_RIGHT = new WPI_TalonFX(3);
+    public final WPI_TalonFX SLAVE_LEFT = new WPI_TalonFX(4);
+
+    public final MotorControllerGroup LEFTSIDE = new MotorControllerGroup(MASTER_LEFT, SLAVE_LEFT);
+    public final MotorControllerGroup RIGHTSIDE = new MotorControllerGroup(MASTER_RIGHT, SLAVE_RIGHT);
+
+    public final DifferentialDrive RB_DRIVE = new DifferentialDrive(RIGHTSIDE, LEFTSIDE);
+    
+
+    
+
+
 }
