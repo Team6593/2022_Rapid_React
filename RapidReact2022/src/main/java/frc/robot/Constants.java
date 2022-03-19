@@ -22,15 +22,15 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 public final class Constants {
     XboxController XBOX_CONTROLLER = new XboxController(0);
 
-    public final WPI_TalonFX MASTER_RIGHT = new WPI_TalonFX(1);
-    public final WPI_TalonFX MASTER_LEFT = new WPI_TalonFX(2);
-    public final WPI_TalonFX SLAVE_RIGHT = new WPI_TalonFX(3);
-    public final WPI_TalonFX SLAVE_LEFT = new WPI_TalonFX(4);
+    public final WPI_TalonFX DT_MASTER_RIGHT = new WPI_TalonFX(1);
+    public final WPI_TalonFX DT_MASTER_LEFT = new WPI_TalonFX(2);
+    public final WPI_TalonFX DT_SLAVE_RIGHT = new WPI_TalonFX(3);
+    public final WPI_TalonFX DT_SLAVE_LEFT = new WPI_TalonFX(4);
 
-    public final MotorControllerGroup LEFTSIDE = new MotorControllerGroup(MASTER_LEFT, SLAVE_LEFT);
-    public final MotorControllerGroup RIGHTSIDE = new MotorControllerGroup(MASTER_RIGHT, SLAVE_RIGHT);
+    public final MotorControllerGroup DT_LEFTSIDE = new MotorControllerGroup(DT_MASTER_LEFT, DT_SLAVE_LEFT);
+    public final MotorControllerGroup DT_RIGHTSIDE = new MotorControllerGroup(DT_MASTER_RIGHT, DT_SLAVE_RIGHT);
 
-    public final DifferentialDrive RB_DRIVE = new DifferentialDrive(RIGHTSIDE, LEFTSIDE);
+    public final DifferentialDrive RB_DRIVE = new DifferentialDrive(DT_RIGHTSIDE, DT_LEFTSIDE);
     
 
     
