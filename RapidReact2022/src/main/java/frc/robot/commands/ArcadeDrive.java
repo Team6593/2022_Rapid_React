@@ -26,7 +26,7 @@ public class ArcadeDrive extends CommandBase {
   }
 
 
-  @Override
+@Override
   public void initialize() {
 
     driveTrain._arcadeDrive(motorSpeed, rotationSpeed);

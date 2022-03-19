@@ -15,12 +15,23 @@ public class DriveTrain extends SubsystemBase {
   
   public Constants consts = new Constants();
 
+  public final WPI_TalonFX DT_MASTER_RIGHT = new WPI_TalonFX(consts.DT_MASTER_RIGHT_ID);
+  public final WPI_TalonFX DT_MASTER_LEFT = new WPI_TalonFX(consts.DT_MASTER_LEFT_ID);
+  public final WPI_TalonFX DT_SLAVE_RIGHT = new WPI_TalonFX(consts.DT_SLAVE_RIGHT_ID);
+  public final WPI_TalonFX DT_SLAVE_LEFT = new WPI_TalonFX(consts.DT_SLAVE_LEFT_ID);
+
+  public final MotorControllerGroup DT_LEFTSIDE = new MotorControllerGroup(DT_MASTER_LEFT, DT_SLAVE_LEFT);
+  public final MotorControllerGroup DT_RIGHTSIDE = new MotorControllerGroup(DT_MASTER_RIGHT, DT_SLAVE_RIGHT);
+
+  public final DifferentialDrive DIFF_DRIVE = new DifferentialDrive(DT_RIGHTSIDE, DT_LEFTSIDE);
+
+
   public void _arcadeDrive(double xSpd, double zRot) {
-    consts.RB_DRIVE.arcadeDrive(xSpd, zRot);
+    DIFF_DRIVE.arcadeDrive(xSpd, zRot);
   }
 
   public void stopAllMotors() {
-    consts.RB_DRIVE.stopMotor();
+    DIFF_DRIVE.stopMotor();
   }
   
   /** Creates a new DriveTrain. */
