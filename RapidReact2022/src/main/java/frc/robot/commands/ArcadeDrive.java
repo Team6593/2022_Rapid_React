@@ -29,13 +29,13 @@ public class ArcadeDrive extends CommandBase {
 @Override
   public void initialize() {
 
-    driveTrain._arcadeDrive(motorSpeed, rotationSpeed);
     
   }
 
   @Override
   public void execute() {
 
+    driveTrain._arcadeDrive(motorSpeed, rotationSpeed);
 
   }
 
