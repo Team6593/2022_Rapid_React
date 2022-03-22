@@ -19,6 +19,8 @@ public class DriveTrain extends SubsystemBase {
   public final WPI_TalonFX DT_MASTER_LEFT = new WPI_TalonFX(consts.DT_MASTER_LEFT_ID);
   public final WPI_TalonFX DT_SLAVE_RIGHT = new WPI_TalonFX(consts.DT_SLAVE_RIGHT_ID);
   public final WPI_TalonFX DT_SLAVE_LEFT = new WPI_TalonFX(consts.DT_SLAVE_LEFT_ID);
+  public final WPI_TalonFX DT_SHOOTING = new WPI_TalonFX(consts.DT_SHOOTING_ID);
+
 
   public final MotorControllerGroup DT_LEFTSIDE = new MotorControllerGroup(DT_MASTER_LEFT, DT_SLAVE_LEFT);
   public final MotorControllerGroup DT_RIGHTSIDE = new MotorControllerGroup(DT_MASTER_RIGHT, DT_SLAVE_RIGHT);

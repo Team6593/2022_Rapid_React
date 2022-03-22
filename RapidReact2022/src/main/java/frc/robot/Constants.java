@@ -22,15 +22,10 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 public final class Constants {
 
     //Motor ID's
-    public static final int Left_motor_1_ID = 0;
-    public static final int Left_motor_2_ID = 0;
-    public static final int Right_motor_1_ID = 0;
-    public static final int Right_motor_2_ID = 0;
     public static final int XboxController_Port = 0;
-
-
     public final int DT_MASTER_RIGHT_ID = 3;
     public final int DT_SLAVE_RIGHT_ID = 4;
     public final int DT_MASTER_LEFT_ID = 1;
     public final int DT_SLAVE_LEFT_ID = 2;
+    public final int DT_SHOOTING_ID = 5; // might have to change this id/port number later.
 }
