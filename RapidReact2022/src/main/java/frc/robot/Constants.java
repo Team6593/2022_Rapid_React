@@ -21,12 +21,12 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
  */
 public final class Constants {
 
-    //Motor ID's
-    public static final int Left_motor_1_ID = 0;
-    public static final int Left_motor_2_ID = 0;
-    public static final int Right_motor_1_ID = 0;
-    public static final int Right_motor_2_ID = 0;
+
+    //Xbox Controller Port
     public static final int XboxController_Port = 0;
+
+    //Intake Motor ID
+    public static final int Intake_Motor_ID = 0;
 
 
     public final int DT_MASTER_RIGHT_ID = 3;
