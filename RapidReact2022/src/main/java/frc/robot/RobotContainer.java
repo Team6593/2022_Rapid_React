@@ -4,11 +4,15 @@
 
 package frc.robot;
 
+import javax.swing.JApplet;
+
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -35,7 +39,21 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+        // triggers
+        final JoystickButton l2 = new JoystickButton(x_stick, 9);
+        final JoystickButton l1 = new JoystickButton(x_stick, 11);
+        final JoystickButton r1 = new JoystickButton(x_stick, 12);
+        final JoystickButton r2 = new JoystickButton(x_stick, 10);
+
+        // dpad
+        final JoystickButton dpadUp = new JoystickButton(x_stick, 5);
+        final JoystickButton dpadRight = new JoystickButton(x_stick, 6);
+        final JoystickButton dpadDown = new JoystickButton(x_stick, 7);
+        final JoystickButton dpadLeft = new JoystickButton(x_stick, 8);
+    
+  }
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
