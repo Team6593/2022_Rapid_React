@@ -1,15 +1,23 @@
+package frc.robot.commands.IntakeCommands;
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.IntakeRollers;
 
 public class IntakeStop extends CommandBase {
   /** Creates a new IntakeStop. */
-  public IntakeStop() {
+
+  private IntakeRollers intake;
+
+  public IntakeStop(IntakeRollers intake) {
+
+    this.intake = intake;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
@@ -18,11 +26,15 @@ public class IntakeStop extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    intake.IntakeStop();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    intake.IntakeStop();
+  }
 
   // Returns true when the command should end.
   @Override

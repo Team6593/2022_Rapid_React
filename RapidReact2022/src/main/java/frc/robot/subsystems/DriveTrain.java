@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -25,9 +27,17 @@ public class DriveTrain extends SubsystemBase {
 
   public final DifferentialDrive DIFF_DRIVE = new DifferentialDrive(DT_RIGHTSIDE, DT_LEFTSIDE);
 
+  private final DoubleSolenoid shifter = Constants.DT_SHIFTER_SOLENOID;
 
   public void _arcadeDrive(double xSpd, double zRot) {
     DIFF_DRIVE.arcadeDrive(xSpd, zRot);
+  }
+
+  public void highGear(){
+    shifter.set(Value.kForward);
+  }
+  public void lowGear(){
+    shifter.set(Value.kReverse);
   }
 
   public void stopAllMotors() {

@@ -2,23 +2,31 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.IntakeCommands;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.DriveTrain;
 
-public class IntakeReverse extends CommandBase {
-  /** Creates a new IntakeReverse. */
-  public IntakeReverse() {
+public class HighGear extends CommandBase {
+  /** Creates a new HighGear. */
+  private DriveTrain m_DriveTrain;
+  
+  public HighGear(DriveTrain drive) {
+    m_DriveTrain = drive;
+    addRequirements(m_DriveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_DriveTrain.highGear();
+  }
 
   // Called once the command ends or is interrupted.
   @Override
