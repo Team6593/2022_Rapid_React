@@ -35,10 +35,12 @@ public final class Constants {
     //DriveTrain Motors
     public final int DT_MASTER_RIGHT_ID = 3;
     public final int DT_SLAVE_RIGHT_ID = 4;
+    
     public final int DT_MASTER_LEFT_ID = 1;
     public final int DT_SLAVE_LEFT_ID = 2;
 
     public static final DoubleSolenoid DT_SHIFTER_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+
 
 
     public static final DoubleSolenoid IT_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);

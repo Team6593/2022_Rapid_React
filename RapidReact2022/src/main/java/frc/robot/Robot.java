@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrain;
@@ -21,9 +22,14 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer rbContainer;
+
+  //private Compressor pcmCompressor;
   
   public Constants consts = new Constants();
-  //public DriveTrain driveTrain = new DriveTrain();
+
+  private DriveTrain driveTrain = new DriveTrain();
+  private XboxController x_stick = new XboxController(Constants.XboxController_Port);
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -31,8 +37,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
-    pcmCompressor.enableDigital();
+    //pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
+    //pcmCompressor.enableDigital();
 
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
@@ -60,7 +66,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    //pcmCompressor.close();
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -89,11 +97,14 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+    
+    //driveTrain.runMotor();
     // Split arcade drive
     // Y-Axis of left stick moves back and forward
     // and the X-Axis of the right stick moves left and right;
     // of course, you can use them both at the same time.
-    //driveTrain._arcadeDrive(consts.XBOX_CONTROLLER.getLeftY(), consts.XBOX_CONTROLLER.getLeftX() );
+    //driveTrain._arcadeDrive(x_stick.getLeftY(), x_stick.getLeftX() );
+    //driveTrain.arcadedriveCustom(x_stick, 0, 0);
   }
 
   @Override

@@ -10,7 +10,7 @@ import frc.robot.subsystems.DriveTrain;
 public class ArcadeDrive extends CommandBase {
   /** Creates a new ArcadeDrive. */
 
-  private DriveTrain driveTrain = new DriveTrain();
+  private DriveTrain driveTrain ;
   private double motorSpeed, rotationSpeed;
 
 
@@ -28,8 +28,7 @@ public class ArcadeDrive extends CommandBase {
 
 @Override
   public void initialize() {
-
-    
+    driveTrain.dt_Init();
   }
 
   @Override
