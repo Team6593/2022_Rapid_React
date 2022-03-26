@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -67,12 +68,19 @@ public class DriveTrain extends SubsystemBase {
   public void lowGear(){
     shifter.set(Value.kReverse);
   }
+  public void shifterOff(){
+    shifter.set(Value.kOff);
+  }
 
   public void stopAllMotors() {
     DIFF_DRIVE.stopMotor();
   }
 
   public void dt_Init() {
+    /* Ensure motor output is neutral during init */
+    DT_MASTER_LEFT.set(ControlMode.PercentOutput, 0);
+    DT_MASTER_RIGHT.set(ControlMode.PercentOutput, 0);
+
     /* factory default values */
     DT_MASTER_RIGHT.configFactoryDefault();
     DT_SLAVE_RIGHT.configFactoryDefault();
@@ -83,6 +91,10 @@ public class DriveTrain extends SubsystemBase {
      DT_SLAVE_RIGHT.follow(DT_MASTER_RIGHT);
      DT_SLAVE_LEFT.follow(DT_MASTER_LEFT);
 
+     /* Set Neutral mode */
+    DT_MASTER_RIGHT.setNeutralMode(NeutralMode.Brake);
+    DT_MASTER_LEFT.setNeutralMode(NeutralMode.Brake);
+
     /* [3] flip values so robot moves forward when stick-forward/LEDs-green */
      DT_MASTER_RIGHT.setInverted(TalonFXInvertType.Clockwise); // !< Update this
      DT_MASTER_LEFT.setInverted(TalonFXInvertType.CounterClockwise); // !< Update this
@@ -90,8 +102,8 @@ public class DriveTrain extends SubsystemBase {
     /*
      * set the invert of the followers to match their respective master controllers
      */
-     DT_SLAVE_RIGHT.setInverted(InvertType.FollowMaster);
-     DT_SLAVE_LEFT.setInverted(InvertType.FollowMaster);
+     //DT_SLAVE_RIGHT.setInverted(InvertType.FollowMaster);
+    // DT_SLAVE_LEFT.setInverted(InvertType.FollowMaster);
 }
   
   /** Creates a new DriveTrain. */

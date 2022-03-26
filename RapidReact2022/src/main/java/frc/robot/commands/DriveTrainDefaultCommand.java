@@ -4,23 +4,23 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
-public class ArcadeDrive extends CommandBase {
+public class DriveTrainDefaultCommand extends CommandBase {
   /** Creates a new ArcadeDrive. */
 
   private DriveTrain driveTrain ;
-  private double motorSpeed, rotationSpeed;
+  private XboxController xboxController;
 
 
-  public ArcadeDrive(DriveTrain driveTrain, double motorSpeed, double rotationSpeed) {
+  public DriveTrainDefaultCommand(DriveTrain driveTrain, XboxController xboxController) {
     // Use addRequirements() here to declare subsystem dependencies.
 
 
     this.driveTrain = driveTrain;
-    this.motorSpeed = motorSpeed;
-    this.rotationSpeed = rotationSpeed;
+    this.xboxController = xboxController;
 
     addRequirements(driveTrain);
   }
@@ -34,7 +34,7 @@ public class ArcadeDrive extends CommandBase {
   @Override
   public void execute() {
 
-    driveTrain._arcadeDrive(motorSpeed, rotationSpeed);
+    driveTrain._arcadeDrive(xboxController.getRawAxis(1), xboxController.getRawAxis(4));
 
   }
 
