@@ -27,8 +27,8 @@ public class Robot extends TimedRobot {
   
   public Constants consts = new Constants();
 
-  private DriveTrain driveTrain = new DriveTrain();
-  private XboxController x_stick = new XboxController(Constants.XboxController_Port);
+  //private DriveTrain driveTrain = new DriveTrain();
+  //private XboxController x_stick = new XboxController(Constants.XboxController_Port);
 
 
   /**

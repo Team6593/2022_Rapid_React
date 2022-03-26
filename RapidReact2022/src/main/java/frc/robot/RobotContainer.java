@@ -6,7 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.DriveTrainDefaultCommand;
 import frc.robot.commands.HighGear;
 import frc.robot.commands.LowGear;
 import frc.robot.commands.IntakeCommands.IntakeRun;
@@ -32,7 +32,7 @@ public class RobotContainer {
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    driveTrain.setDefaultCommand(new ArcadeDrive(driveTrain, x_stick.getRawAxis(1), x_stick.getRawAxis(4)));
+    driveTrain.setDefaultCommand(new DriveTrainDefaultCommand(driveTrain, x_stick));
     // Configure the button bindings
     configureButtonBindings();
   }
