@@ -16,31 +16,29 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
-
     //Xbox Controller Port
-    public static final int XboxController_Port = 0;
+    public static final int XboxController_Port = 0; 
 
-    //Intake Motor ID
- 
-
+    //Xbox button map
     public static final int A_BUTTON = 1;
-
     public static final int X_BUTTON = 3;
-
     public static final int Y_BUTTON = 4;
-
     public static final int B_BUTTON = 2;
 
-    //DriveTrain Motors
+    //DriveTrain Motors and Solenoid
     public final int DT_MASTER_RIGHT_ID = 3;
     public final int DT_SLAVE_RIGHT_ID = 4;
-    
     public final int DT_MASTER_LEFT_ID = 1;
     public final int DT_SLAVE_LEFT_ID = 2;
 
+    // Feeder
+    public final int FEEDER_LEFT = 7; //dummy numbers
+    public final int FEEDER_RIGHT = 8; 
+    public final int FEEDER_MID = 9;
+
     public static final DoubleSolenoid DT_SHIFTER_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
 
+    //Intake Solenoid and Motor
     public static final DoubleSolenoid IT_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
     public static final int Intake_Roller_Motor_ID = 0;
 

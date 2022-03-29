@@ -10,22 +10,22 @@ import edu.wpi.first.wpilibj.util.WPILibVersion;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ShootOut extends SubsystemBase {
+public class Turret extends SubsystemBase {
   // public Constants consts = new Constants();
   public Constants consts = new Constants();
 
-  public final WPI_TalonFX DT_SHOOTING = new WPI_TalonFX(consts.Intake_Roller_Motor_ID);
+  public final WPI_TalonFX turretMotor = new WPI_TalonFX(consts.Intake_Roller_Motor_ID);
   
   public void startMotor(double motorSpeed) {
-    DT_SHOOTING.set(motorSpeed);
+    turretMotor.set(motorSpeed);
   }
   
   public void stopMotor() {
-    DT_SHOOTING.stopMotor();
+    turretMotor.stopMotor();
   }
 
   /** Creates a new ShootOut. */
-  public ShootOut() {}
+  public Turret() {}
 
   @Override
   public void periodic() {
