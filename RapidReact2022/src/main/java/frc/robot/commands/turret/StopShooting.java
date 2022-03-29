@@ -1,29 +1,18 @@
-package frc.robot.commands.IntakeCommands;
-
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-
+package frc.robot.commands.turret;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Turret;
 
-
-public class IntakeMotorRun extends CommandBase {
-  /** Creates a new IntakeRun. */
-
-
-  private Intake intake;
-  private double speed;
-  
-
-  public IntakeMotorRun(Intake intake, double speed) {
-
-    this.intake = intake;
-    this.speed = speed;
-    
-    addRequirements(intake);
+public class StopShooting extends CommandBase {
+  Turret turret = new Turret();
+  /** Creates a new StopShooting. */
+  public StopShooting() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(turret);
 
   }
 
@@ -34,19 +23,18 @@ public class IntakeMotorRun extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.intakeMotorStart(speed);
+    turret.stopMotor();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intake.intakeMotorStop();
+    turret.stopMotor();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    
     return false;
   }
 }
