@@ -12,19 +12,19 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
 import frc.robot.commands.DriveTrain.HighGear;
 import frc.robot.commands.DriveTrain.LowGear;
-<<<<<<< HEAD
+
 import frc.robot.commands.IntakeCommands.IntakeMotorRun;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 
-=======
+
 import frc.robot.commands.IntakeCommands.IntakeRun;
 import frc.robot.commands.feeder.StartFeeder;
 import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.IntakeRollers;
->>>>>>> 90171e1a48555f2481ba9a11a2b805ad585f2346
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
