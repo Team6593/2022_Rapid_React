@@ -7,13 +7,10 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -96,8 +93,13 @@ public class DriveTrain extends SubsystemBase {
     DT_MASTER_LEFT.setNeutralMode(NeutralMode.Brake);
 
     /* [3] flip values so robot moves forward when stick-forward/LEDs-green */
-     DT_MASTER_RIGHT.setInverted(TalonFXInvertType.Clockwise); // !< Update this
-     DT_MASTER_LEFT.setInverted(TalonFXInvertType.CounterClockwise); // !< Update this
+    DT_SLAVE_LEFT.setInverted(InvertType.FollowMaster);
+
+    //DT_SLAVE_RIGHT.setInverted(InvertType.FollowMaster);
+    DT_SLAVE_RIGHT.setInverted(true);
+
+    DT_MASTER_RIGHT.setInverted(TalonFXInvertType.Clockwise); // !< Update this
+    DT_MASTER_LEFT.setInverted(TalonFXInvertType.CounterClockwise); // !< Update this
 
     /*
      * set the invert of the followers to match their respective master controllers

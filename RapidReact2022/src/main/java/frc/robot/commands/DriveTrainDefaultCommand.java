@@ -33,9 +33,7 @@ public class DriveTrainDefaultCommand extends CommandBase {
 
   @Override
   public void execute() {
-
     driveTrain._arcadeDrive(xboxController.getRawAxis(1), xboxController.getRawAxis(4));
-
   }
 
   @Override

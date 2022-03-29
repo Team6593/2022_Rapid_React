@@ -29,10 +29,18 @@ public class RobotContainer {
 
   private IntakeRollers intake = new IntakeRollers();
 
+  JoystickButton a_Button, x_Button, y_Button, b_Button;
+
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     driveTrain.setDefaultCommand(new DriveTrainDefaultCommand(driveTrain, x_stick));
+    
+    a_Button = new JoystickButton(x_stick, Constants.A_BUTTON);
+    x_Button = new JoystickButton(x_stick, Constants.X_BUTTON);
+    y_Button = new JoystickButton(x_stick, Constants.Y_BUTTON);
+    b_Button = new JoystickButton(x_stick, Constants.B_BUTTON);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -45,11 +53,6 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    //Declaring Buttons a_Button is bottom, b_Button is right
-    final JoystickButton a_Button = new JoystickButton(x_stick, Constants.A_BUTTON);
-    final JoystickButton x_Button = new JoystickButton(x_stick, Constants.X_BUTTON);
-    final JoystickButton y_Button = new JoystickButton(x_stick, Constants.Y_BUTTON);
-    final JoystickButton b_Button = new JoystickButton(x_stick, Constants.B_BUTTON);
 
     //Button Maping
     //a_Button.toggleWhenPressed(new IntakeRun(intake, 0.2));
