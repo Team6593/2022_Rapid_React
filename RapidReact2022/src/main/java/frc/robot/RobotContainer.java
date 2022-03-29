@@ -9,8 +9,12 @@ import javax.swing.JApplet;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
+import frc.robot.commands.DriveTrain.HighGear;
+import frc.robot.commands.DriveTrain.LowGear;
+import frc.robot.commands.IntakeCommands.IntakeRun;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.IntakeRollers;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -25,10 +29,21 @@ public class RobotContainer {
   private final DriveTrain driveTrain = new DriveTrain();
 
   private XboxController x_stick = new XboxController(Constants.XboxController_Port);
+
+  private IntakeRollers intake = new IntakeRollers();
+
+  JoystickButton a_Button, x_Button, y_Button, b_Button;
+
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    driveTrain.setDefaultCommand(new ArcadeDrive(driveTrain, x_stick.getRawAxis(1), x_stick.getRawAxis(4)));
+    driveTrain.setDefaultCommand(new DriveTrainDefaultCommand(driveTrain, x_stick));
+    
+    a_Button = new JoystickButton(x_stick, Constants.A_BUTTON);
+    x_Button = new JoystickButton(x_stick, Constants.X_BUTTON);
+    y_Button = new JoystickButton(x_stick, Constants.Y_BUTTON);
+    b_Button = new JoystickButton(x_stick, Constants.B_BUTTON);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -40,20 +55,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-        // triggers
-        final JoystickButton l2 = new JoystickButton(x_stick, 9);
-        final JoystickButton l1 = new JoystickButton(x_stick, 11);
-        final JoystickButton r1 = new JoystickButton(x_stick, 12);
-        final JoystickButton r2 = new JoystickButton(x_stick, 10);
+    //Button Maping
+    //a_Button.toggleWhenPressed(new IntakeRun(intake, 0.2));
 
-        // dpad
-        final JoystickButton dpadUp = new JoystickButton(x_stick, 5);
-        final JoystickButton dpadRight = new JoystickButton(x_stick, 6);
-        final JoystickButton dpadDown = new JoystickButton(x_stick, 7);
-        final JoystickButton dpadLeft = new JoystickButton(x_stick, 8);
-    
+    x_Button.whenPressed(new HighGear(driveTrain));
+    y_Button.whenPressed(new LowGear(driveTrain));
+
   }
-
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

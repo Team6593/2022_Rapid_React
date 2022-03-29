@@ -14,7 +14,7 @@ public class ShootOut extends SubsystemBase {
   // public Constants consts = new Constants();
   public Constants consts = new Constants();
 
-  public final WPI_TalonFX DT_SHOOTING = new WPI_TalonFX(consts.DT_SHOOTING_ID);
+  public final WPI_TalonFX DT_SHOOTING = new WPI_TalonFX(consts.Intake_Roller_Motor_ID);
   
   public void startMotor(double motorSpeed) {
     DT_SHOOTING.set(motorSpeed);

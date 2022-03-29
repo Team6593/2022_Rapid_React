@@ -3,13 +3,9 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -21,11 +17,32 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
  */
 public final class Constants {
 
-    //Motor ID's
+
+    //Xbox Controller Port
     public static final int XboxController_Port = 0;
+
+    //Intake Motor ID
+ 
+
+    public static final int A_BUTTON = 1;
+
+    public static final int X_BUTTON = 3;
+
+    public static final int Y_BUTTON = 4;
+
+    public static final int B_BUTTON = 2;
+
+    //DriveTrain Motors
     public final int DT_MASTER_RIGHT_ID = 3;
     public final int DT_SLAVE_RIGHT_ID = 4;
+    
     public final int DT_MASTER_LEFT_ID = 1;
     public final int DT_SLAVE_LEFT_ID = 2;
-    public final int DT_SHOOTING_ID = 5; // might have to change this id/port number later.
+
+    public static final DoubleSolenoid DT_SHIFTER_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+
+    public static final DoubleSolenoid IT_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
+    public static final int Intake_Roller_Motor_ID = 0;
+
+
 }

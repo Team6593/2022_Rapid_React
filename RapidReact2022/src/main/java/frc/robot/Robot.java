@@ -7,7 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -19,10 +18,10 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer rbContainer;
+
+  //private Compressor pcmCompressor;
   
   public Constants consts = new Constants();
-  public DriveTrain driveTrain = new DriveTrain();
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -32,9 +31,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     rbContainer = new RobotContainer();
-    driveTrain.DT_RIGHTSIDE.setInverted(true); // You may have to change the left side to be inverted
-    // or the right side; it really depends on the drivetrain on the robot
-
   }
 
   /**
@@ -55,7 +51,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+    //pcmCompressor.close();
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -84,11 +82,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    // Split arcade drive
-    // Y-Axis of left stick moves back and forward
-    // and the X-Axis of the right stick moves left and right;
-    // of course, you can use them both at the same time.
-    //driveTrain._arcadeDrive(consts.XBOX_CONTROLLER.getLeftY(), consts.XBOX_CONTROLLER.getLeftX() );
   }
 
   @Override
