@@ -6,9 +6,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.DriveTrainDefaultCommand;
+import frc.robot.commands.HighGear;
+import frc.robot.commands.LowGear;
+import frc.robot.commands.LowGear;
+import frc.robot.commands.IntakeCommands.IntakeRun;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.IntakeRollers;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -21,10 +27,21 @@ public class RobotContainer {
   private final DriveTrain driveTrain = new DriveTrain();
 
   private XboxController x_stick = new XboxController(Constants.XboxController_Port);
+
+  private IntakeRollers intake = new IntakeRollers();
+
+  JoystickButton a_Button, x_Button, y_Button, b_Button;
+
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    driveTrain.setDefaultCommand(new ArcadeDrive(driveTrain, x_stick.getRawAxis(1), x_stick.getRawAxis(4)));
+    driveTrain.setDefaultCommand(new DriveTrainDefaultCommand(driveTrain, x_stick));
+    
+    a_Button = new JoystickButton(x_stick, Constants.A_BUTTON);
+    x_Button = new JoystickButton(x_stick, Constants.X_BUTTON);
+    y_Button = new JoystickButton(x_stick, Constants.Y_BUTTON);
+    b_Button = new JoystickButton(x_stick, Constants.B_BUTTON);
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -35,7 +52,16 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+
+
+    //Button Maping
+    //a_Button.toggleWhenPressed(new IntakeRun(intake, 0.2));
+
+    x_Button.whenPressed(new HighGear(driveTrain));
+    y_Button.whenPressed(new LowGear(driveTrain));
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
