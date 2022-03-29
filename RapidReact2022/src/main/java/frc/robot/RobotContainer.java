@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveTrainDefaultCommand;
 import frc.robot.commands.HighGear;
 import frc.robot.commands.LowGear;
+import frc.robot.commands.LowGear;
 import frc.robot.commands.IntakeCommands.IntakeRun;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeRollers;
