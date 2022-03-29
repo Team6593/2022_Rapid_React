@@ -9,9 +9,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
 import frc.robot.commands.DriveTrain.HighGear;
 import frc.robot.commands.DriveTrain.LowGear;
-import frc.robot.commands.IntakeCommands.IntakeRun;
+import frc.robot.commands.IntakeCommands.IntakeMotorRun;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.IntakeRollers;
+import frc.robot.subsystems.Intake;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -27,7 +28,7 @@ public class RobotContainer {
 
   private XboxController x_stick = new XboxController(Constants.XboxController_Port);
 
-  private IntakeRollers intake = new IntakeRollers();
+  private Intake intake = new Intake();
 
   JoystickButton a_Button, x_Button, y_Button, b_Button;
 
@@ -53,7 +54,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Button Maping
-    //a_Button.toggleWhenPressed(new IntakeRun(intake, 0.2));
+    //a_Button.toggleWhenPressed(new IntakeMotorRun(intake, 0.2));
 
     x_Button.whenPressed(new HighGear(driveTrain));
     y_Button.whenPressed(new LowGear(driveTrain));

@@ -42,7 +42,10 @@ public final class Constants {
     public static final DoubleSolenoid DT_SHIFTER_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
 
     public static final DoubleSolenoid IT_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
+
+    //Intake Solenoid and Motors
     public static final int Intake_Roller_Motor_ID = 0;
+    public static final int TURRET_MOTOR_ID = 0;
 
 
 }
