@@ -6,10 +6,9 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.DriveTrainDefaultCommand;
-import frc.robot.commands.HighGear;
-import frc.robot.commands.LowGear;
-import frc.robot.commands.LowGear;
+import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
+import frc.robot.commands.DriveTrain.HighGear;
+import frc.robot.commands.DriveTrain.LowGear;
 import frc.robot.commands.IntakeCommands.IntakeRun;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.IntakeRollers;
@@ -53,8 +52,6 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
-
     //Button Maping
     //a_Button.toggleWhenPressed(new IntakeRun(intake, 0.2));
 
