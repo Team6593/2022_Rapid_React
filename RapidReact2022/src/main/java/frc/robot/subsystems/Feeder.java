@@ -19,17 +19,23 @@ public class Feeder extends SubsystemBase {
   WPI_TalonSRX feederLeft = new WPI_TalonSRX(constants.FEEDER_LEFT);
   WPI_TalonSRX feederMid = new WPI_TalonSRX(constants.FEEDER_MID);
 
-  MotorControllerGroup feederMotors = new MotorControllerGroup(feederLeft, feederLeft, feederMid);
+  // COME BACK TO THIS LINE OF CODE IF THE FEEDER IS NOT MOVING CORRECTLY
+  //MotorControllerGroup feederMotors = new MotorControllerGroup(feederLeft, feederLeft, feederMid);
+  ////////////////////////////////////////////////////
 
   /** Creates a new Feeder. */
   public Feeder() {}
 
   public void stopFeeder() {
-    feederMotors.stopMotor();
+    feederLeft.stopMotor();
+    feederMid.stopMotor();
+    feederRight.stopMotor();
   }
 
   public void startFeeder(double feederSpeed) {
-    feederMotors.set(feederSpeed);
+    feederLeft.set(feederSpeed);
+    feederRight.set(feederSpeed);
+    feederMid.set(feederSpeed);
   }
 
   @Override

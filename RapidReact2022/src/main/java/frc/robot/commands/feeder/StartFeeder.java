@@ -8,13 +8,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Feeder;
 
 public class StartFeeder extends CommandBase {
-  Feeder feeder = new Feeder();
+  private Feeder feeder;
   public double speed = 0;
   /** Creates a new StartFeeder. */
-  public StartFeeder() {
+  public StartFeeder(Feeder feeder, double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(feeder);
     this.speed = speed;
+    this.feeder = feeder;
+    addRequirements(feeder);
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +30,9 @@ public class StartFeeder extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    feeder.stopFeeder();
+  }
 
   // Returns true when the command should end.
   @Override

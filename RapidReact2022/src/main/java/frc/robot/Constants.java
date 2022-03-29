@@ -31,12 +31,14 @@ public final class Constants {
     public final int DT_MASTER_LEFT_ID = 1;
     public final int DT_SLAVE_LEFT_ID = 2;
 
-    // Feeder
-    public final int FEEDER_LEFT = 7; //dummy numbers
-    public final int FEEDER_RIGHT = 8; 
-    public final int FEEDER_MID = 9;
-
     public static final DoubleSolenoid DT_SHIFTER_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+
+    // Feeder
+    public final int FEEDER_LEFT = 5; 
+    public final int FEEDER_RIGHT = 6; 
+    public final int FEEDER_MID = 7;
+
+    
 
     //Intake Solenoid and Motor
     public static final DoubleSolenoid IT_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);

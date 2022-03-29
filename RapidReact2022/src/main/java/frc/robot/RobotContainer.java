@@ -13,7 +13,10 @@ import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
 import frc.robot.commands.DriveTrain.HighGear;
 import frc.robot.commands.DriveTrain.LowGear;
 import frc.robot.commands.IntakeCommands.IntakeRun;
+import frc.robot.commands.feeder.StartFeeder;
+import frc.robot.commands.feeder.StopFeeder;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.IntakeRollers;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -27,6 +30,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain driveTrain = new DriveTrain();
+  private final Feeder feeder = new Feeder();
 
   private XboxController x_stick = new XboxController(Constants.XboxController_Port);
 
@@ -60,7 +64,8 @@ public class RobotContainer {
 
     x_Button.whenPressed(new HighGear(driveTrain));
     y_Button.whenPressed(new LowGear(driveTrain));
-
+    a_Button.whenPressed(new StartFeeder(feeder, 0.2));
+    a_Button.whenReleased(new StopFeeder(feeder));
   }
 
   /**

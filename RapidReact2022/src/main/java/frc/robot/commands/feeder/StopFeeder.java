@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Feeder;
 
 public class StopFeeder extends CommandBase {
-  Feeder feeder = new Feeder();
+  private Feeder feeder;
   
   /** Creates a new StopFeeder. */
-  public StopFeeder() {
+  public StopFeeder(Feeder feeder) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.feeder = feeder;
     addRequirements(feeder);
   }
 
@@ -28,7 +29,9 @@ public class StopFeeder extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    feeder.stopFeeder();
+  }
 
   // Returns true when the command should end.
   @Override
