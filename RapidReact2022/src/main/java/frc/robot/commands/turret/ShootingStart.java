@@ -7,14 +7,15 @@ package frc.robot.commands.turret;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Turret;
 
-public class StartShooting extends CommandBase {
+public class ShootingStart extends CommandBase {
   Turret turret = new Turret();
   private double speed = 0;
   /** Creates a new StartShooting. */
-  public StartShooting(double speed) {
+  public ShootingStart(Turret turret, double speed) {
+    this.speed = speed;
+    this.turret = turret;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(turret);
-    this.speed = speed;
   }
 
   // Called when the command is initially scheduled.

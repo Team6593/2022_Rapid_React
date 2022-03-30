@@ -10,9 +10,9 @@ import frc.robot.subsystems.Intake;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class IntakeSolenoidExtend extends InstantCommand {
+public class IntakeSolExtend extends InstantCommand {
   Intake intake;
-  public IntakeSolenoidExtend(Intake intake) {
+  public IntakeSolExtend(Intake intake) {
     this.intake = intake;
 
     addRequirements(intake);

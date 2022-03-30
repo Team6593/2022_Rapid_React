@@ -19,39 +19,17 @@ import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
   
-  public Constants consts = new Constants();
+  private Constants consts = new Constants();
 
-  public WPI_TalonFX DT_MASTER_RIGHT = new WPI_TalonFX(consts.DT_MASTER_RIGHT_ID, "rio");
-  public WPI_TalonFX DT_MASTER_LEFT = new WPI_TalonFX(consts.DT_MASTER_LEFT_ID, "rio");
-  public WPI_TalonFX DT_SLAVE_RIGHT = new WPI_TalonFX(consts.DT_SLAVE_RIGHT_ID, "rio");
-  public WPI_TalonFX DT_SLAVE_LEFT = new WPI_TalonFX(consts.DT_SLAVE_LEFT_ID, "rio");
+  private WPI_TalonFX DT_MASTER_RIGHT = new WPI_TalonFX(consts.DT_MASTER_RIGHT_ID, "rio");
+  private WPI_TalonFX DT_MASTER_LEFT = new WPI_TalonFX(consts.DT_MASTER_LEFT_ID, "rio");
+  private WPI_TalonFX DT_SLAVE_RIGHT = new WPI_TalonFX(consts.DT_SLAVE_RIGHT_ID, "rio");
+  private WPI_TalonFX DT_SLAVE_LEFT = new WPI_TalonFX(consts.DT_SLAVE_LEFT_ID, "rio");
   
+  private final MotorControllerGroup DT_LEFTSIDE = new MotorControllerGroup(DT_MASTER_LEFT, DT_SLAVE_LEFT);
+  private final MotorControllerGroup DT_RIGHTSIDE = new MotorControllerGroup(DT_MASTER_RIGHT, DT_SLAVE_RIGHT);
 
-  // TalonFX testls1 = new TalonFX(1);
-  // TalonFX testls2 = new TalonFX(2);
-    
-  // TalonFX testrs1 = new TalonFX(3);
-  // TalonFX testrs2 = new TalonFX(4);
-
-  // public void arcadedriveCustom(XboxController j, double L_Minus, double R_Minus)
-  // {
-  //   testls2.follow(testls1);
-  //   testrs2.follow(testls2);
-
-  //   double speed = -j.getRawAxis(1);
-  //   double turn = j.getRawAxis(4);
-
-  //   double left = (speed + turn) - L_Minus, 
-  //         right = (speed - turn) - R_Minus;
-
-  //         testls1.set(ControlMode.PercentOutput, left);
-  //         testrs1.set(ControlMode.PercentOutput, right);
-  // }
-
-  public final MotorControllerGroup DT_LEFTSIDE = new MotorControllerGroup(DT_MASTER_LEFT, DT_SLAVE_LEFT);
-  public final MotorControllerGroup DT_RIGHTSIDE = new MotorControllerGroup(DT_MASTER_RIGHT, DT_SLAVE_RIGHT);
-
-  public final DifferentialDrive DIFF_DRIVE = new DifferentialDrive(DT_LEFTSIDE, DT_RIGHTSIDE);
+  private final DifferentialDrive DIFF_DRIVE = new DifferentialDrive(DT_LEFTSIDE, DT_RIGHTSIDE);
 
   private final DoubleSolenoid shifter = Constants.DT_SHIFTER_SOLENOID;
 
