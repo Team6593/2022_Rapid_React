@@ -36,6 +36,10 @@ public final class Constants {
     public final int DT_SLAVE_LEFT_ID = 2;
     public static final DoubleSolenoid DT_SHIFTER_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
     
+    // Climber
+    public final int CLIMBER_LEFT = 9;
+    public final int CLIMBER_RIGHT = 10;
+
     // Feeder
     public final int FEEDER_LEFT = 5; 
     public final int FEEDER_RIGHT = 6; 
