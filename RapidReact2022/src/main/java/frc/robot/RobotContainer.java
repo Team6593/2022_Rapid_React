@@ -4,10 +4,7 @@
 
 package frc.robot;
 
-import javax.swing.JApplet;
-
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
 import frc.robot.commands.DriveTrain.HighGear;
@@ -23,7 +20,6 @@ import frc.robot.commands.feeder.FeederStart;
 import frc.robot.commands.feeder.FeederStop;
 import frc.robot.commands.turret.ShootingStart;
 import frc.robot.commands.turret.ShootingStop;
-import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Feeder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
