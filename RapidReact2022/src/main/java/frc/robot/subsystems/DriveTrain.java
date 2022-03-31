@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
@@ -84,6 +85,12 @@ public class DriveTrain extends SubsystemBase {
      */
      //DT_SLAVE_RIGHT.setInverted(InvertType.FollowMaster);
     // DT_SLAVE_LEFT.setInverted(InvertType.FollowMaster);
+
+    DT_SLAVE_LEFT.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    DT_SLAVE_RIGHT.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    DT_MASTER_RIGHT.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    DT_MASTER_LEFT.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+    
 }
   
   /** Creates a new DriveTrain. */
@@ -92,5 +99,6 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
   }
 }

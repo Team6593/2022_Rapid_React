@@ -51,4 +51,7 @@ public final class Constants {
 
     //Turret Motor
     public final int TURRET_SHOOTMOTOR = 8;
+
+    // Sensor stuff
+    final int kUnitsPerRev = 2048; 
 }

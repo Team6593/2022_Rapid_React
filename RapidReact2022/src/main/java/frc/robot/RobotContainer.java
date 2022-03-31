@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
 import frc.robot.commands.DriveTrain.HighGear;
 import frc.robot.commands.DriveTrain.LowGear;
@@ -13,6 +14,8 @@ import frc.robot.commands.IntakeCommands.IntakeMotorRun;
 import frc.robot.commands.IntakeCommands.IntakeMotorStop;
 import frc.robot.commands.IntakeCommands.IntakeSolExtend;
 import frc.robot.commands.IntakeCommands.IntakeSolRetract;
+import frc.robot.commands.IntakeCommands.IntakeStartSequential;
+import frc.robot.commands.IntakeCommands.IntakeStopSequential;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Turret;
@@ -50,7 +53,7 @@ public class RobotContainer {
     turret = new Turret();
 
     driveTrain.setDefaultCommand(new DriveTrainDefaultCommand(driveTrain, x_stick));
-    
+
     a_Button = new JoystickButton(x_stick, Constants.A_BUTTON);
     x_Button = new JoystickButton(x_stick, Constants.X_BUTTON);
     y_Button = new JoystickButton(x_stick, Constants.Y_BUTTON);
@@ -71,19 +74,21 @@ public class RobotContainer {
    * @param Turret 
    */
   private void configureButtonBindings() {
+    
     //Button Maping
-    a_Button.toggleWhenPressed(new IntakeMotorRun(intake, 0.2));
-
     x_Button.whenPressed(new HighGear(driveTrain));
     y_Button.whenPressed(new LowGear(driveTrain));
+
+    //Feeder binding
     a_Button.whenPressed(new FeederStart(feeder, 0.2)).whenReleased(new FeederStop(feeder));
 
-    b_Button.whenPressed(new IntakeSolExtend(intake));
-    menu_Button.whenPressed(new IntakeSolRetract(intake));
+    //Intake bindings
+    b_Button.whenPressed(new IntakeStartSequential(intake, 0.2));
+    menu_Button.whenPressed(new IntakeStopSequential(intake));
 
+    //Turret binding
     l_Button.whileHeld(new ShootingStart(turret, .2)).whenReleased(new ShootingStop(turret));
 
-    r_Button.whileHeld(new IntakeMotorRun(intake, .2)).whenReleased(new IntakeMotorStop(intake));
   }
 
   /**
