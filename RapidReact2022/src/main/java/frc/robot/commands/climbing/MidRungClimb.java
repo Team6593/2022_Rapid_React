@@ -11,13 +11,21 @@ public class MidRungClimb extends CommandBase {
   
   Climber climber;
   double speed;
+  double distance;
+
+  double leftClimber_SelSenPos = climber.leftClimber.getSelectedSensorPosition();
+  double leftClimber_SelSenVel = climber.leftClimber.getSelectedSensorVelocity();
+  double rightClimber_SelSenPos = climber.rightClimber.getSelectedSensorPosition();
+  double rightClimber_SelSenVel = climber.rightClimber.getSelectedSensorVelocity();
+
 
   /** Creates a new MidRungClimb. */
-  public MidRungClimb(Climber climber, double speed) {
+  public MidRungClimb(Climber climber, double speed, double distance) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.climber = climber;
     this.speed = speed;
     addRequirements(climber);
+    this.distance = distance;
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +37,12 @@ public class MidRungClimb extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climber.moveHooksUp(speed);
+    // PSUEDOCODE
+    if(leftClimber_SelSenPos >= distance && rightClimber_SelSenPos >= distance) {
+      climber.leftClimber.stopMotor();
+    } else {
+      climber.moveHooksUp(speed);
+    }
   }
 
   // Called once the command ends or is interrupted.

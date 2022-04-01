@@ -23,8 +23,6 @@ public class Climber extends SubsystemBase {
   public Climber() {}
 
   public void init() {
-    leftClimber.configFactoryDefault();
-    rightClimber.configFactoryDefault();
 
     rightClimber.setNeutralMode(NeutralMode.Brake);
     leftClimber.setNeutralMode(NeutralMode.Brake);
@@ -34,6 +32,9 @@ public class Climber extends SubsystemBase {
 
     rightClimber.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
     leftClimber.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor);
+
+    leftClimber.configFactoryDefault();
+    rightClimber.configFactoryDefault();
 
   }
 

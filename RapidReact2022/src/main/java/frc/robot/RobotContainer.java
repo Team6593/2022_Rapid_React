@@ -16,6 +16,10 @@ import frc.robot.commands.IntakeCommands.IntakeSolExtend;
 import frc.robot.commands.IntakeCommands.IntakeSolRetract;
 import frc.robot.commands.IntakeCommands.IntakeStartSequential;
 import frc.robot.commands.IntakeCommands.IntakeStopSequential;
+import frc.robot.commands.climbing.LowRungClimb;
+import frc.robot.commands.climbing.MidRungClimb;
+import frc.robot.commands.climbing.StopClimbing;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Turret;
@@ -39,10 +43,11 @@ public class RobotContainer {
   private final Feeder feeder;
   private final Intake intake;
   private final Turret turret;
+  private final Climber climber;
 
   //OI
   private XboxController x_stick = new XboxController(Constants.XboxController_Port);
-  JoystickButton a_Button, x_Button, y_Button, b_Button, l_Button, r_Button, menu_Button;
+  JoystickButton a_Button, x_Button, y_Button, b_Button, l_Button, r_Button, menu_Button, dpad_Down, dpad_Up, dpad_Right;
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -51,6 +56,7 @@ public class RobotContainer {
     feeder = new Feeder();
     intake = new Intake();
     turret = new Turret();
+    climber = new Climber();
 
     driveTrain.setDefaultCommand(new DriveTrainDefaultCommand(driveTrain, x_stick));
 
@@ -61,6 +67,9 @@ public class RobotContainer {
     l_Button = new JoystickButton(x_stick, Constants.L_BUTTON);
     r_Button = new JoystickButton(x_stick, Constants.R_BUTTON);
     menu_Button = new JoystickButton(x_stick, Constants.Menu_BUTTON);
+    dpad_Down = new JoystickButton(x_stick, x_stick.getPOV(180));
+    dpad_Up = new JoystickButton(x_stick, x_stick.getPOV(0));
+    dpad_Right = new JoystickButton(x_stick, x_stick.getPOV(90));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -88,6 +97,12 @@ public class RobotContainer {
 
     //Turret binding
     l_Button.whileHeld(new ShootingStart(turret, .2)).whenReleased(new ShootingStop(turret));
+
+    //Climber binding, make sure to change distances 
+    dpad_Down.whenPressed(new LowRungClimb(climber, .3, 500));
+    dpad_Up.whenPressed(new MidRungClimb(climber, .3, 300));
+    dpad_Right.whenPressed(new StopClimbing(climber, -.3, 500));
+    
 
   }
 

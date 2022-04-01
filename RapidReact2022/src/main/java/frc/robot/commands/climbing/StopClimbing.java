@@ -40,18 +40,11 @@ public class StopClimbing extends CommandBase {
   public void execute() {
     
     // PSUEDOCODE
-    if(leftClimber_SelSenPos >= distance) {
+    if(leftClimber_SelSenPos >= distance && rightClimber_SelSenPos >= distance) {
       climber.leftClimber.stopMotor();
     } else {
-      climber.moveLeftHook(speed);
+      climber.moveHooksUp(speed);
     }
-
-    if(rightClimber_SelSenPos >= distance) {
-      climber.leftClimber.stopMotor();
-    } else {
-      climber.moveRightHook(speed);
-    }
-
 
 
     // climber.stopHooks();
