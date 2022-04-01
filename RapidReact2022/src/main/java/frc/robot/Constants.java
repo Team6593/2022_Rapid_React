@@ -43,6 +43,10 @@ public final class Constants {
 
     //Intake Solenoid and Motor
     public static final DoubleSolenoid IT_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
+
+    //revolution of wheel, used for driving straight
+    public final double K_SCALE_VALUE = 0;
+
     public final int Intake_Roller_Motor_ID = 0;
 
     //Turret Motor

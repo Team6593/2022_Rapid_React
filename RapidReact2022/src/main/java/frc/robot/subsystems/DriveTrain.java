@@ -21,8 +21,8 @@ public class DriveTrain extends SubsystemBase {
   
   private Constants consts = new Constants();
 
-  private WPI_TalonFX DT_MASTER_RIGHT = new WPI_TalonFX(consts.DT_MASTER_RIGHT_ID, "rio");
-  private WPI_TalonFX DT_MASTER_LEFT = new WPI_TalonFX(consts.DT_MASTER_LEFT_ID, "rio");
+  public WPI_TalonFX DT_MASTER_RIGHT = new WPI_TalonFX(consts.DT_MASTER_RIGHT_ID, "rio");
+  public WPI_TalonFX DT_MASTER_LEFT = new WPI_TalonFX(consts.DT_MASTER_LEFT_ID, "rio");
   private WPI_TalonFX DT_SLAVE_RIGHT = new WPI_TalonFX(consts.DT_SLAVE_RIGHT_ID, "rio");
   private WPI_TalonFX DT_SLAVE_LEFT = new WPI_TalonFX(consts.DT_SLAVE_LEFT_ID, "rio");
   

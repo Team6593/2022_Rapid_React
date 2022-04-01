@@ -17,7 +17,7 @@ public class DTDriveStraight extends CommandBase {
   private double speed;
   private double distance;
   
-  private static double k_scale = Constants.K_SCALE_VALUE;
+  private double k_scale = Constants.K_SCALE_VALUE;
   //k_scale is full revolution of the wheel
 
 
@@ -35,8 +35,7 @@ public class DTDriveStraight extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    driveTrain.DT_MASTER_RIGHT.configFactoryDefault(0);
-    driveTrain.DT_MASTER_LEFT.configFactoryDefault(0);
+    driveTrain.dt_Init();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
