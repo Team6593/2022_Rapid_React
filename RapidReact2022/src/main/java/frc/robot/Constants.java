@@ -49,7 +49,7 @@ public final class Constants {
     public static final DoubleSolenoid IT_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
 
     //revolution of wheel, used for driving straight
-    public final double K_SCALE_VALUE = 0.001;
+    public static final double K_SCALE_VALUE = 0.001;
 
     public final int Intake_Roller_Motor_ID = 0;
 
