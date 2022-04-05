@@ -4,6 +4,42 @@
 
 package frc.robot;
 
+
+/*
+arcade drive = left stick + right stick
+high gear = right stick click
+low gear = left stick click
+---------------------------
+extend/motor start + feeder start = a
+retract/motor stop + feeder stop = b
+---------------------------
+shoot = r2 trigger or r1 trigger
+auto-aim + shoot = r2 trigger or r1 trigger
+---------------------------
+low rung
+          > x
+mid rung
+retract/stop = y
+
+---------------------------------------
+DriveTrain
+-- highgear and lowgear
+-- arcade drive
+Autonomous
+-- taxi
+Climbing
+-- StopClimbing
+-- low/midrung climb
+Intake
+-- extend/retract
+-- motor start/stop
+Turret
+-- auto-aim + shoot
+-- shooting
+-- rotating
+-- limelight
+*/
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
