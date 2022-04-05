@@ -9,10 +9,16 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
 import frc.robot.commands.DriveTrain.HighGear;
 import frc.robot.commands.DriveTrain.LowGear;
+import frc.robot.commands.IntakeCommands.IntakeExtendMotorFeederStart;
 import frc.robot.commands.IntakeCommands.IntakeMotorRun;
 import frc.robot.commands.IntakeCommands.IntakeMotorStop;
+import frc.robot.commands.IntakeCommands.IntakeRetractMotorFeederStop;
 import frc.robot.commands.IntakeCommands.IntakeSolExtend;
 import frc.robot.commands.IntakeCommands.IntakeSolRetract;
+import frc.robot.commands.climbing.LowRungClimb;
+import frc.robot.commands.climbing.MidRungClimb;
+import frc.robot.commands.climbing.StopClimbing;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Turret;
@@ -36,10 +42,11 @@ public class RobotContainer {
   private final Feeder feeder;
   private final Intake intake;
   private final Turret turret;
+  private final Climber climber;
 
   //OI
   private XboxController x_stick = new XboxController(Constants.XboxController_Port);
-  JoystickButton a_Button, x_Button, y_Button, b_Button, l_Button, r_Button, menu_Button;
+  JoystickButton a_Button, x_Button, y_Button, b_Button, l_Button, r_Button, menu_Button,rclick_Button, lclick_Button;
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -48,6 +55,7 @@ public class RobotContainer {
     feeder = new Feeder();
     intake = new Intake();
     turret = new Turret();
+    climber = new Climber();
 
     driveTrain.setDefaultCommand(new DriveTrainDefaultCommand(driveTrain, x_stick));
     
@@ -58,7 +66,9 @@ public class RobotContainer {
     l_Button = new JoystickButton(x_stick, Constants.L_BUTTON);
     r_Button = new JoystickButton(x_stick, Constants.R_BUTTON);
     menu_Button = new JoystickButton(x_stick, Constants.Menu_BUTTON);
-
+    rclick_Button = new JoystickButton(x_stick, Constants.RCLICK_BUTTON);
+    lclick_Button = new JoystickButton(x_stick, Constants.LCLICK_BUTTON);
+    
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -72,20 +82,16 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Button Maping
-    a_Button.toggleWhenPressed(new IntakeMotorRun(intake, 0.2));
+    a_Button.whenPressed(new IntakeExtendMotorFeederStart(intake, 0.4, feeder, 0.2));
+    b_Button.whenPressed(new IntakeRetractMotorFeederStop(intake, feeder));
 
-    x_Button.whenPressed(new HighGear(driveTrain));
-    y_Button.whenPressed(new LowGear(driveTrain));
-    a_Button.whenPressed(new FeederStart(feeder, 0.2)).whenReleased(new FeederStop(feeder));
+    x_Button.whenPressed(new LowRungClimb(climber, 0.4));
+    y_Button.whenPressed(new StopClimbing(climber));
 
-    b_Button.whenPressed(new IntakeSolExtend(intake));
-    menu_Button.whenPressed(new IntakeSolRetract(intake));
+    r_Button.whileHeld(new ShootingStart(turret, .2)).whenReleased(new ShootingStop(turret));
 
-    l_Button.whileHeld(new ShootingStart(turret, .2)).whenReleased(new ShootingStop(turret));
-
-    r_Button.whileHeld(new IntakeMotorRun(intake, .2)).whenReleased(new IntakeMotorStop(intake));
-
-    
+    rclick_Button.whenPressed(new HighGear(driveTrain));
+    lclick_Button.whenPressed(new LowGear(driveTrain));
   }
 
   /**

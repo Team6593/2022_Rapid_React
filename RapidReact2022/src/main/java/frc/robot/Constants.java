@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 public final class Constants {
     //Xbox Controller Port
     public static final int XboxController_Port = 0;
-
+    
     //Xbox button map
     public static final int A_BUTTON = 1;
     public static final int B_BUTTON = 2;
@@ -28,6 +28,8 @@ public final class Constants {
     public static final int R_BUTTON = 6;
     public static final int Window_BUTTON = 7;
     public static final int Menu_BUTTON = 8;
+    public static final int LCLICK_BUTTON = 9;
+    public static final int RCLICK_BUTTON = 10;
     
     //DriveTrain Motors and Solenoid
     public final int DT_MASTER_RIGHT_ID = 3;
@@ -50,6 +52,7 @@ public final class Constants {
 
     //revolution of wheel, used for driving straight
     public static final double K_SCALE_VALUE = 0.001;
+
 
     public final int Intake_Roller_Motor_ID = 0;
 
