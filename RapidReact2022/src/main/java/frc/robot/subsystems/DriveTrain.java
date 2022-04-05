@@ -4,15 +4,20 @@
 
 package frc.robot.subsystems;
 
+import javax.swing.GrayFilter;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -32,6 +37,16 @@ public class DriveTrain extends SubsystemBase {
   private final DifferentialDrive DIFF_DRIVE = new DifferentialDrive(DT_LEFTSIDE, DT_RIGHTSIDE);
 
   private final DoubleSolenoid shifter = Constants.DT_SHIFTER_SOLENOID;
+
+  private AHRS gyro = new AHRS(SPI.Port.kMXP);
+  
+  private double kP = 0; // change number later
+
+  public void driveStraight(double motorSpeed) {
+    double error = -gyro.getAngle(); // Target angle is zero
+    double turnSpeed = kP * error;
+    DIFF_DRIVE.arcadeDrive(motorSpeed, turnSpeed);
+  }
 
   public void _arcadeDrive(double xSpd, double zRot) {
     DIFF_DRIVE.arcadeDrive(xSpd, zRot);
