@@ -89,7 +89,7 @@ public class RobotContainer {
     y_Button.whenPressed(new StopClimbing(climber));
 
     r_Button.whileHeld(new ShootingStart(turret, .2)).whenReleased(new ShootingStop(turret));
-
+    
     rclick_Button.whenPressed(new HighGear(driveTrain));
     lclick_Button.whenPressed(new LowGear(driveTrain));
   }
