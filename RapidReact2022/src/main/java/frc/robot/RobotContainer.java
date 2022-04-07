@@ -5,6 +5,8 @@
 package frc.robot;
 
 
+import java.util.Timer;
+
 /*
 arcade drive = left stick + right stick
 high gear = right stick click
@@ -42,6 +44,7 @@ Turret
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveStraightWithGyro;
 import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
 import frc.robot.commands.DriveTrain.HighGear;
 import frc.robot.commands.DriveTrain.LowGear;
@@ -72,6 +75,10 @@ public class RobotContainer {
   private final Feeder feeder;
   private final Intake intake;
   private final Turret turret;
+  
+  private final Timer timer;
+
+  private final DriveStraightWithGyro taxi;
 
   //OI
   private XboxController x_stick = new XboxController(Constants.XboxController_Port);
@@ -85,6 +92,8 @@ public class RobotContainer {
     intake = new Intake();
     turret = new Turret();
 
+    taxi = new DriveStraightWithGyro(driveTrain, 0.5);
+
     driveTrain.setDefaultCommand(new DriveTrainDefaultCommand(driveTrain, x_stick));
     
     a_Button = new JoystickButton(x_stick, Constants.A_BUTTON);
@@ -94,6 +103,8 @@ public class RobotContainer {
     l_Button = new JoystickButton(x_stick, Constants.L_BUTTON);
     r_Button = new JoystickButton(x_stick, Constants.R_BUTTON);
     menu_Button = new JoystickButton(x_stick, Constants.Menu_BUTTON);
+
+    timer = new Timer();
 
     // Configure the button bindings
     configureButtonBindings();
@@ -131,6 +142,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
+      
     return null;
   }
 }

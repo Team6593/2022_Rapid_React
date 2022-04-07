@@ -51,4 +51,7 @@ public final class Constants {
 
     //Turret Motor
     public final int TURRET_SHOOTMOTOR = 8;
+
+    // LimeLight
+    public final double PORT = 5800; // might have to change port num later
 }

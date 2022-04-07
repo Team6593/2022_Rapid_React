@@ -4,14 +4,18 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveStraightWithGyro extends CommandBase {
   
   private DriveTrain driveTrain;
+  //private Timer timer = Timer();
+
   double motorSpeed;
-  
+  //double time = timer.getFPGATimestamp();
+
   /** Creates a new driveStraightWithGyro. */
   public DriveStraightWithGyro(DriveTrain driveTrain, double motorSpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -22,7 +26,9 @@ public class DriveStraightWithGyro extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -33,7 +39,7 @@ public class DriveStraightWithGyro extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //driveTrain.driveStraight(0);
+    driveTrain.driveStraight(0);
     driveTrain.stopAllMotors();
   }
 
