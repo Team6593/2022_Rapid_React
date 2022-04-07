@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 
-public class DTDriveStraight extends CommandBase {
+public class DriveStraightWithEncoder extends CommandBase {
   private DriveTrain driveTrain;
   private double speed;
   private double distance;
@@ -22,12 +22,12 @@ public class DTDriveStraight extends CommandBase {
 
 
   /** Creates a new DTDriveStraight. */
-  public DTDriveStraight(DriveTrain driveTrain, double speed, double distance) {
+  public DriveStraightWithEncoder(DriveTrain driveTrain, double speed, double distance) {
     // Use addRequirements() here to declare subsystem dependencies.
 
     this.driveTrain = driveTrain;
     this.speed = speed;
-    this.distance = distance;
+    this.distance = distance + driveTrain.DT_MASTER_RIGHT.getSelectedSensorPosition();
 
     addRequirements(driveTrain);
   }
@@ -58,5 +58,5 @@ public class DTDriveStraight extends CommandBase {
   @Override
   public boolean isFinished() {
     return (driveTrain.DT_MASTER_RIGHT.getSelectedSensorPosition() >= distance);
-  }
+    }
 }

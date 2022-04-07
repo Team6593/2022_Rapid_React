@@ -5,7 +5,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.WaitCommand;
+import frc.robot.commands.DriveTrain.DriveStraightWithEncoder;
+import frc.robot.commands.DriveTrain.DriveStraightWithGyro;
 import frc.robot.commands.DriveTrain.DriveTrainDefaultCommand;
 import frc.robot.commands.DriveTrain.HighGear;
 import frc.robot.commands.DriveTrain.LowGear;
@@ -28,6 +32,8 @@ import frc.robot.commands.turret.ShootingStart;
 import frc.robot.commands.turret.ShootingStop;
 import frc.robot.subsystems.Feeder;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -46,6 +52,7 @@ public class RobotContainer {
 
   //OI
   private XboxController x_stick = new XboxController(Constants.XboxController_Port);
+  //private Joystick x_stick = new Joystick(0);
   JoystickButton a_Button, x_Button, y_Button, b_Button, l_Button, r_Button, menu_Button,rclick_Button, lclick_Button;
 
   
@@ -56,6 +63,8 @@ public class RobotContainer {
     intake = new Intake();
     turret = new Turret();
     climber = new Climber();
+
+    //driveStraightWithTime = new DriveStraightWithTime(driveTrain, 4);
 
     driveTrain.setDefaultCommand(new DriveTrainDefaultCommand(driveTrain, x_stick));
     
@@ -101,6 +110,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return null;
+    return new DriveStraightWithGyro(driveTrain, .4).withTimeout(4);
   }
 }

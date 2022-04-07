@@ -4,6 +4,7 @@
 
 package frc.robot.commands.DriveTrain;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
@@ -13,6 +14,7 @@ public class DriveTrainDefaultCommand extends CommandBase {
 
   private DriveTrain driveTrain ;
   private XboxController xboxController;
+  private Joystick jstickController;
 
 
   public DriveTrainDefaultCommand(DriveTrain driveTrain, XboxController xboxController) {
@@ -21,6 +23,13 @@ public class DriveTrainDefaultCommand extends CommandBase {
 
     this.driveTrain = driveTrain;
     this.xboxController = xboxController;
+
+    addRequirements(driveTrain);
+  }
+  public DriveTrainDefaultCommand(DriveTrain driveTrain, Joystick jstickController) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    this.driveTrain = driveTrain;
+    this.jstickController = jstickController;
 
     addRequirements(driveTrain);
   }
@@ -34,6 +43,8 @@ public class DriveTrainDefaultCommand extends CommandBase {
   @Override
   public void execute() {
     driveTrain._arcadeDrive(xboxController.getRawAxis(1), xboxController.getRawAxis(4));
+    //driveTrain._arcadeDrive(jstickController.getRawAxis(1), -jstickController.getRawAxis(0));
+
   }
 
   @Override

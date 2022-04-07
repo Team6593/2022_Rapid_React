@@ -21,7 +21,7 @@ public class IntakeExtendMotorFeederStart extends ParallelCommandGroup {
 
     addCommands(
       new IntakeMotorRun(intake, mspeed), 
-      new IntakeSolExtend(intake),
+     // new IntakeSolExtend(intake),
       new FeederStart(feeder, fspeed)
       );
   }

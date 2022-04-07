@@ -4,8 +4,6 @@
 
 package frc.robot.subsystems;
 
-import javax.swing.GrayFilter;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -14,10 +12,10 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -25,7 +23,7 @@ import frc.robot.Constants;
 public class DriveTrain extends SubsystemBase {
   
   private Constants consts = new Constants();
-
+  
   public WPI_TalonFX DT_MASTER_RIGHT = new WPI_TalonFX(consts.DT_MASTER_RIGHT_ID, "rio");
   public WPI_TalonFX DT_MASTER_LEFT = new WPI_TalonFX(consts.DT_MASTER_LEFT_ID, "rio");
   private WPI_TalonFX DT_SLAVE_RIGHT = new WPI_TalonFX(consts.DT_SLAVE_RIGHT_ID, "rio");
@@ -33,23 +31,39 @@ public class DriveTrain extends SubsystemBase {
   
   private final MotorControllerGroup DT_LEFTSIDE = new MotorControllerGroup(DT_MASTER_LEFT, DT_SLAVE_LEFT);
   private final MotorControllerGroup DT_RIGHTSIDE = new MotorControllerGroup(DT_MASTER_RIGHT, DT_SLAVE_RIGHT);
-
+  
   private final DifferentialDrive DIFF_DRIVE = new DifferentialDrive(DT_LEFTSIDE, DT_RIGHTSIDE);
-
+  
   private final DoubleSolenoid shifter = Constants.DT_SHIFTER_SOLENOID;
-
-  private AHRS gyro = new AHRS(SPI.Port.kMXP);
+  
+  private AHRS gyro;
   
   private double kP = 0; // change number later
-
+  
+  /** Creates a new DriveTrain. */
+  public DriveTrain() {
+    //navx gyro setup
+    try {
+      gyro = new AHRS(SPI.Port.kMXP); 
+    } catch (RuntimeException ex ) {
+        DriverStation.reportError("Error instantiating navX-MXP:  " + ex.getMessage(), true);
+    }
+  }
   public void driveStraight(double motorSpeed) {
     double error = -gyro.getAngle(); // Target angle is zero
     double turnSpeed = kP * error;
     DIFF_DRIVE.arcadeDrive(motorSpeed, turnSpeed);
   }
 
+  public void gyroReset(){
+    gyro.reset();
+  }
+
   public void _arcadeDrive(double xSpd, double zRot) {
     DIFF_DRIVE.arcadeDrive(xSpd, zRot);
+  }
+  public void stopAllMotors() {
+    DIFF_DRIVE.stopMotor();
   }
 
   public void highGear(){
@@ -60,10 +74,6 @@ public class DriveTrain extends SubsystemBase {
   }
   public void shifterOff(){
     shifter.set(Value.kOff);
-  }
-
-  public void stopAllMotors() {
-    DIFF_DRIVE.stopMotor();
   }
 
   public void dt_Init() {
@@ -101,9 +111,6 @@ public class DriveTrain extends SubsystemBase {
     // DT_SLAVE_LEFT.setInverted(InvertType.FollowMaster);
 }
   
-  /** Creates a new DriveTrain. */
-  public DriveTrain() {}
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

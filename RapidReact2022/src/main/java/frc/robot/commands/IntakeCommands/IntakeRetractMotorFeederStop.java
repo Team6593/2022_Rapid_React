@@ -19,7 +19,7 @@ public class IntakeRetractMotorFeederStop extends ParallelCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new IntakeMotorStop(intake),
-      new IntakeSolRetract(intake),
+      //new IntakeSolRetract(intake),
       new FeederStop(feeder)
     );
   }
