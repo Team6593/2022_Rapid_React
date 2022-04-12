@@ -14,19 +14,19 @@ public class Climber extends SubsystemBase {
   private Constants constants = new Constants();
   
   WPI_TalonFX leftClimber = new WPI_TalonFX(constants.CLIMBER_LEFT);
-  WPI_TalonFX rightClimber = new WPI_TalonFX(constants.CLIMBER_RIGHT);
+  // WPI_TalonFX rightClimber = new WPI_TalonFX(constants.CLIMBER_RIGHT);
 
   /** Creates a new Climber. */
   public Climber() {}
 
   public void moveHooksUp(double speed) {
     leftClimber.set(speed);
-    rightClimber.set(speed);
+    // rightClimber.set(speed);
   }
   
   public void stopHooks() {
     leftClimber.stopMotor();
-    rightClimber.stopMotor();
+    // rightClimber.stopMotor();
   }
 
   @Override

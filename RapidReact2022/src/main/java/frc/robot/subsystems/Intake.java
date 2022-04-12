@@ -17,20 +17,26 @@ public class Intake extends SubsystemBase {
   private Constants consts = new Constants();
 
   private WPI_TalonFX intakeMotor = new WPI_TalonFX(consts.Intake_Roller_Motor_ID);
+  private WPI_TalonFX intakeMotor2 = new WPI_TalonFX(consts.Intake_Roller_Motor2_ID);
   private DoubleSolenoid intakeSolenoids = Constants.IT_SOLENOID;
 
-  public Intake() {}
+  public Intake() {
+    intakeMotor2.setInverted(true);
+  }
 
   public void intakeMotorStart(double speed){
     intakeMotor.set(speed);
+    intakeMotor2.set(speed);
   }
 
   public void intakeMotorRev(double speed){
     intakeMotor.set(-speed);
+    intakeMotor2.set(-speed);
   }
 
   public void intakeMotorStop(){
     intakeMotor.stopMotor();
+    intakeMotor2.stopMotor();
   }
 
   public void intakeSolExtend(){
@@ -44,8 +50,6 @@ public class Intake extends SubsystemBase {
   public void intakeSolenoidStop(){
     intakeSolenoids.set(Value.kOff);
   }
-  
-
 
   @Override
   public void periodic() {

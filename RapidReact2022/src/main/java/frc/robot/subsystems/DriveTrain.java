@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
@@ -39,9 +40,11 @@ public class DriveTrain extends SubsystemBase {
   private AHRS gyro;
   
   private double kP = 0; // change number later
-  
+
+
   /** Creates a new DriveTrain. */
   public DriveTrain() {
+    
     //navx gyro setup
     try {
       gyro = new AHRS(SPI.Port.kMXP); 
@@ -60,8 +63,11 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void _arcadeDrive(double xSpd, double zRot) {
-    DIFF_DRIVE.arcadeDrive(xSpd, zRot);
+    // DIFF_DRIVE.arcadeDrive(xSpd * 0.8, zRot * 0.8);
+    DIFF_DRIVE.arcadeDrive(xSpd, zRot, false);
+    // DIFF_DRIVE.arcadeDrive(.65, .65);
   }
+
   public void stopAllMotors() {
     DIFF_DRIVE.stopMotor();
   }
@@ -75,7 +81,7 @@ public class DriveTrain extends SubsystemBase {
   public void shifterOff(){
     shifter.set(Value.kOff);
   }
-
+  
   public void dt_Init() {
     /* Ensure motor output is neutral during init */
     DT_MASTER_LEFT.set(ControlMode.PercentOutput, 0);
@@ -86,6 +92,14 @@ public class DriveTrain extends SubsystemBase {
     DT_SLAVE_RIGHT.configFactoryDefault();
     DT_MASTER_LEFT.configFactoryDefault();
     DT_SLAVE_LEFT.configFactoryDefault();
+    
+    DT_MASTER_RIGHT.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 45, 30, 1));
+  
+    DT_SLAVE_RIGHT.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 45, 30, 1));
+    
+    DT_MASTER_LEFT.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 45, 30, 1));
+    
+    DT_SLAVE_LEFT.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 45, 30, 1));
 
     /* set up followers */
      DT_SLAVE_RIGHT.follow(DT_MASTER_RIGHT);
@@ -98,8 +112,8 @@ public class DriveTrain extends SubsystemBase {
     /* [3] flip values so robot moves forward when stick-forward/LEDs-green */
     DT_SLAVE_LEFT.setInverted(InvertType.FollowMaster);
 
-    //DT_SLAVE_RIGHT.setInverted(InvertType.FollowMaster);
-    DT_SLAVE_RIGHT.setInverted(true);
+    DT_SLAVE_RIGHT.setInverted(InvertType.FollowMaster);
+    //DT_SLAVE_RIGHT.setInverted(true);
 
     DT_MASTER_RIGHT.setInverted(TalonFXInvertType.Clockwise); // !< Update this
     DT_MASTER_LEFT.setInverted(TalonFXInvertType.CounterClockwise); // !< Update this

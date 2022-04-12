@@ -4,8 +4,10 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.WaitCommand;
 import frc.robot.commands.DriveTrain.DriveStraightWithEncoder;
@@ -28,12 +30,15 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Turret;
 import frc.robot.commands.feeder.FeederStart;
 import frc.robot.commands.feeder.FeederStop;
+import frc.robot.commands.turret.AlignTurret;
 import frc.robot.commands.turret.ShootingStart;
 import frc.robot.commands.turret.ShootingStop;
+import frc.robot.commands.turret.TurnTurret;
 import frc.robot.subsystems.Feeder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -44,16 +49,19 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveTrain driveTrain;
-  private final Feeder feeder;
-  private final Intake intake;
-  private final Turret turret;
-  private final Climber climber;
+  public final DriveTrain driveTrain;
+  public final Feeder feeder;
+  public final Intake intake;
+  public final Turret turret;
+  public final Climber climber;
+
+  public final Compressor compressor;
 
   //OI
   private XboxController x_stick = new XboxController(Constants.XboxController_Port);
   //private Joystick x_stick = new Joystick(0);
   JoystickButton a_Button, x_Button, y_Button, b_Button, l_Button, r_Button, menu_Button,rclick_Button, lclick_Button;
+  Button rightDpad, leftDpad;
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -63,6 +71,8 @@ public class RobotContainer {
     intake = new Intake();
     turret = new Turret();
     climber = new Climber();
+    
+    compressor = new Compressor(PneumaticsModuleType.CTREPCM);
 
     //driveStraightWithTime = new DriveStraightWithTime(driveTrain, 4);
 
@@ -78,6 +88,8 @@ public class RobotContainer {
     rclick_Button = new JoystickButton(x_stick, Constants.RCLICK_BUTTON);
     lclick_Button = new JoystickButton(x_stick, Constants.LCLICK_BUTTON);
     
+    leftDpad = new Button(() -> x_stick.getPOV() == 90);
+    rightDpad = new Button(() -> x_stick.getPOV() == 270);
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -91,16 +103,27 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Button Maping
-    a_Button.whenPressed(new IntakeExtendMotorFeederStart(intake, 0.4, feeder, 0.2));
-    b_Button.whenPressed(new IntakeRetractMotorFeederStop(intake, feeder));
+    //a_Button.whenPressed(new IntakeExtendMotorFeederStart(intake, 0.4, feeder, 0.2));
+    //b_Button.whenPressed(new IntakeRetractMotorFeederStop(intake, feeder));
+    a_Button.whenPressed(new IntakeSolExtend(intake).andThen(new IntakeMotorRun(intake, .5)));
 
-    x_Button.whenPressed(new LowRungClimb(climber, 0.4));
-    y_Button.whenPressed(new StopClimbing(climber));
+    b_Button.whenPressed(new IntakeMotorStop(intake).andThen(new IntakeSolRetract(intake)));
 
-    r_Button.whileHeld(new ShootingStart(turret, .2)).whenReleased(new ShootingStop(turret));
-    
+    //menu_Button.whenPressed(new IntakeMotorRun(intake, 0.65));
+    r_Button.whenPressed(new IntakeMotorStop(intake));
+    //b_Button.whenPressed(new IntakeSolRetract(intake).andThen(new IntakeMotorStop(intake)));
+
+    y_Button.whenPressed(new LowRungClimb(climber, 1)).whenReleased(new StopClimbing(climber));
+    x_Button.whenPressed(new LowRungClimb(climber, -1)).whenReleased(new StopClimbing(climber));
+
+    //r_Button.whileHeld(new AlignTurret(turret).andThen(new ShootingStart(turret, .75))).whenReleased(new ShootingStop(turret));
+    l_Button.whileHeld(new ShootingStart(turret, .6)).whenReleased(new ShootingStop(turret));
+
     rclick_Button.whenPressed(new HighGear(driveTrain));
     lclick_Button.whenPressed(new LowGear(driveTrain));
+
+    //leftDpad.whileHeld(new TurnTurret(turret,+0.75));
+    //rightDpad.whileHeld(new TurnTurret(turret, -0.75));
   }
 
   /**
@@ -110,6 +133,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new DriveStraightWithGyro(driveTrain, .4).withTimeout(4);
+    return new DriveStraightWithGyro(driveTrain, .4).withTimeout(5);
   }
 }

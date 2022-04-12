@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 public final class Constants {
     //Xbox Controller Port
     public static final int XboxController_Port = 0;
-    
+
     //Xbox button map
     public static final int A_BUTTON = 1;
     public static final int B_BUTTON = 2;
@@ -31,6 +31,7 @@ public final class Constants {
     public static final int LCLICK_BUTTON = 9;
     public static final int RCLICK_BUTTON = 10;
     
+    
     //DriveTrain Motors and Solenoid
     public final int DT_MASTER_RIGHT_ID = 3;
     public final int DT_SLAVE_RIGHT_ID = 4;
@@ -40,7 +41,7 @@ public final class Constants {
     
     // Climber
     public final int CLIMBER_LEFT = 9;
-    public final int CLIMBER_RIGHT = 10;
+   //public final int CLIMBER_RIGHT = 10;
 
     // Feeder
     public final int FEEDER_LEFT = 5; 
@@ -49,13 +50,13 @@ public final class Constants {
 
     //Intake Solenoid and Motor
     public static final DoubleSolenoid IT_SOLENOID = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
-
-    //revolution of wheel, used for driving straight
-    public static final double K_SCALE_VALUE = 0.001;
-
-
-    public final int Intake_Roller_Motor_ID = 0;
+    public final int Intake_Roller_Motor_ID = 10;
+    public final int Intake_Roller_Motor2_ID = 11;
 
     //Turret Motor
     public final int TURRET_SHOOTMOTOR = 8;
+    public final int TURRET_ALIGNER = -1;
+
+    // LimeLight
+    public final int PORT = 5800; // might have to change port num later
 }

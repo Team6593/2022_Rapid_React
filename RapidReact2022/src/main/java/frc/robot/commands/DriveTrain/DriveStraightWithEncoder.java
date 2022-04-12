@@ -17,7 +17,7 @@ public class DriveStraightWithEncoder extends CommandBase {
   private double speed;
   private double distance;
   
-  private double k_scale = Constants.K_SCALE_VALUE;
+  private double k_scale = 0;
   //k_scale is full revolution of the wheel
 
 
@@ -36,6 +36,7 @@ public class DriveStraightWithEncoder extends CommandBase {
   @Override
   public void initialize() {
     driveTrain.dt_Init();
+    // driveTrain.stopAllMotors();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

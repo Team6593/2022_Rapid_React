@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.util.DriveFilter;
 
 public class DriveTrainDefaultCommand extends CommandBase {
   /** Creates a new ArcadeDrive. */
@@ -16,20 +17,24 @@ public class DriveTrainDefaultCommand extends CommandBase {
   private XboxController xboxController;
   private Joystick jstickController;
 
+  private DriveFilter speed, turn;
+
 
   public DriveTrainDefaultCommand(DriveTrain driveTrain, XboxController xboxController) {
     // Use addRequirements() here to declare subsystem dependencies.
 
+    speed = new DriveFilter();
+    turn = new DriveFilter();
 
     this.driveTrain = driveTrain;
     this.xboxController = xboxController;
-
+    
     addRequirements(driveTrain);
   }
-  public DriveTrainDefaultCommand(DriveTrain driveTrain, Joystick jstickController) {
+  public DriveTrainDefaultCommand(DriveTrain driveTrain) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.driveTrain = driveTrain;
-    this.jstickController = jstickController;
+    // this.jstickController = jstickController;
 
     addRequirements(driveTrain);
   }
@@ -42,7 +47,11 @@ public class DriveTrainDefaultCommand extends CommandBase {
 
   @Override
   public void execute() {
-    driveTrain._arcadeDrive(xboxController.getRawAxis(1), xboxController.getRawAxis(4));
+    
+    driveTrain._arcadeDrive(
+      speed.get(xboxController.getRawAxis(1)),
+      turn.get(-xboxController.getRawAxis(4))
+    );
     //driveTrain._arcadeDrive(jstickController.getRawAxis(1), -jstickController.getRawAxis(0));
 
   }

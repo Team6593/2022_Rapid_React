@@ -5,6 +5,7 @@
 package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.feeder.FeederStart;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Intake;
@@ -20,9 +21,11 @@ public class IntakeExtendMotorFeederStart extends ParallelCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
 
     addCommands(
-      new IntakeMotorRun(intake, mspeed), 
-     // new IntakeSolExtend(intake),
+      new SequentialCommandGroup(
+        new IntakeSolExtend(intake),
+        new IntakeMotorRun(intake, mspeed)
+      ),
       new FeederStart(feeder, fspeed)
-      );
+    );
   }
 }

@@ -14,6 +14,7 @@ public class Turret extends SubsystemBase {
   private Constants consts = new Constants();
 
   private final WPI_TalonFX turretMotor = new WPI_TalonFX(consts.TURRET_SHOOTMOTOR);
+  private final WPI_TalonFX turretAligner = new WPI_TalonFX(consts.TURRET_ALIGNER);
   
   public void startMotor(double motorSpeed) {
     turretMotor.set(motorSpeed);
@@ -23,8 +24,14 @@ public class Turret extends SubsystemBase {
     turretMotor.stopMotor();
   }
 
+  public void setAlign(double speed) {
+    turretAligner.set(speed);
+  }
+
   /** Creates a new ShootOut. */
-  public Turret() {}
+  public Turret() {
+    turretAligner.setInverted(false);
+  }
 
   @Override
   public void periodic() {
